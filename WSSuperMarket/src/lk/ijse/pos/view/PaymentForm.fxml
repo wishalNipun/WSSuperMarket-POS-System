@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="730.0" prefWidth="1092.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.pos.controller.PaymentFormController">
+   <children>
+      <Separator layoutX="60.0" layoutY="71.0" prefHeight="12.0" prefWidth="954.0" />
+      <JFXTextField fx:id="txtName" focusColor="BLACK" labelFloat="true" layoutX="453.0" layoutY="114.0" prefHeight="40.0" prefWidth="169.0" promptText="Name" unFocusColor="BLACK" />
+      <JFXTextField fx:id="txtTitle" focusColor="BLACK" labelFloat="true" layoutX="256.0" layoutY="114.0" prefHeight="40.0" prefWidth="169.0" promptText="Title" unFocusColor="BLACK" />
+      <TableView fx:id="tblPayment" layoutX="48.0" layoutY="354.0" prefHeight="282.0" prefWidth="995.0">
+         <columns>
+            <TableColumn fx:id="colItemId" prefWidth="114.0" text="Item Id" />
+            <TableColumn fx:id="colDescription" prefWidth="249.0" text="Description" />
+            <TableColumn fx:id="colPackSIze" prefWidth="107.0" text="Pack SIze" />
+            <TableColumn fx:id="colUnitPrice" prefWidth="110.0" text="Unit Price" />
+            <TableColumn fx:id="colQty" prefWidth="85.0" text="Qty" />
+            <TableColumn fx:id="colDiscount" prefWidth="105.0" text="Discount" />
+            <TableColumn fx:id="colTotal" prefWidth="123.0" text="Total" />
+            <TableColumn fx:id="colDelete" prefWidth="101.0" text="---" />
+         </columns>
+      </TableView>
+      <JFXButton fx:id="btnAddToCart" buttonType="RAISED" layoutX="837.0" layoutY="295.0" onAction="#btnAddToCartOnAction" prefHeight="40.0" prefWidth="205.0" style="-fx-background-color: #1abc9c;" text="Add To Cart" />
+      <Label layoutX="60.0" layoutY="27.0" prefHeight="53.0" prefWidth="473.0" text="Add Payment For Customer">
+         <font>
+            <Font name="System Bold" size="36.0" />
+         </font>
+         <textFill>
+            <LinearGradient endX="1.0" endY="1.0">
+               <stops>
+                  <Stop color="BLACK" />
+                  <Stop color="#1abc9c" offset="1.0" />
+               </stops>
+            </LinearGradient>
+         </textFill>
+      </Label>
+      <JFXComboBox fx:id="cmbCustomerId" focusColor="BLACK" labelFloat="true" layoutX="60.0" layoutY="114.0" prefHeight="40.0" prefWidth="169.0" promptText="Customer Id" unFocusColor="BLACK" />
+      <JFXTextField fx:id="txtAddress" focusColor="BLACK" labelFloat="true" layoutX="655.0" layoutY="114.0" prefHeight="40.0" prefWidth="169.0" promptText="Address" unFocusColor="BLACK" />
+      <JFXTextField fx:id="txtPackSize" focusColor="BLACK" labelFloat="true" layoutX="453.0" layoutY="211.0" prefHeight="40.0" prefWidth="169.0" promptText="Pack SIze" unFocusColor="BLACK" />
+      <JFXTextField fx:id="txtDescription" focusColor="BLACK" labelFloat="true" layoutX="256.0" layoutY="211.0" prefHeight="40.0" prefWidth="169.0" promptText="Description" unFocusColor="BLACK" />
+      <JFXComboBox fx:id="cmbItemId" focusColor="BLACK" labelFloat="true" layoutX="57.0" layoutY="211.0" prefHeight="40.0" prefWidth="169.0" promptText="Item Id" unFocusColor="BLACK" />
+      <Label layoutX="644.0" layoutY="657.0" prefHeight="36.0" prefWidth="85.0" text="Total :">
+         <font>
+            <Font name="System Bold" size="25.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblTotal" alignment="TOP_LEFT" layoutX="729.0" layoutY="657.0" prefHeight="36.0" prefWidth="100.0" text="0" textFill="#ae1212">
+         <font>
+            <Font name="System Bold" size="25.0" />
+         </font>
+      </Label>
+      <JFXTextField fx:id="txtUnitPrice" focusColor="BLACK" labelFloat="true" layoutX="655.0" layoutY="211.0" prefHeight="40.0" prefWidth="169.0" promptText="Unit Price" unFocusColor="BLACK" />
+      <JFXTextField fx:id="txtQtyOnHand" focusColor="BLACK" labelFloat="true" layoutX="845.0" layoutY="211.0" prefHeight="40.0" prefWidth="169.0" promptText="Quantity On Hand" unFocusColor="BLACK" />
+      <JFXTextField fx:id="txtQty" focusColor="BLACK" labelFloat="true" layoutX="57.0" layoutY="295.0" prefHeight="40.0" prefWidth="169.0" promptText="Qty" unFocusColor="BLACK" />
+      <JFXTextField fx:id="txtDiscount" focusColor="BLACK" labelFloat="true" layoutX="256.0" layoutY="295.0" prefHeight="40.0" prefWidth="169.0" promptText="Discount" unFocusColor="BLACK" />
+      <JFXButton fx:id="btnPlaceOrder" buttonType="RAISED" layoutX="845.0" layoutY="655.0" onAction="#btnPlaceOrderOnAction" prefHeight="40.0" prefWidth="205.0" style="-fx-background-color: #1abc9c;" text="Place Order" />
+      <Label layoutX="845.0" layoutY="83.0" prefHeight="36.0" prefWidth="85.0" text="Order ID:">
+         <font>
+            <Font size="21.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblOrderId" layoutX="943.0" layoutY="83.0" prefHeight="36.0" prefWidth="100.0" text="OD-001">
+         <font>
+            <Font name="System Bold" size="21.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

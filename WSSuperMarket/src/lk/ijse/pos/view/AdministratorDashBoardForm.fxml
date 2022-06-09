@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="800.0" prefWidth="1300.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.pos.controller.AdministratorDashBoardFormController">
+   <children>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#03324a" height="70.0" layoutX="208.0" layoutY="1.0" stroke="#34495e" strokeType="INSIDE" width="1092.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#03324a" height="800.0" layoutX="-1.0" layoutY="1.0" stroke="#03324a" strokeType="INSIDE" width="209.0" />
+      <AnchorPane fx:id="loadContext" blendMode="SRC_ATOP" layoutX="213.0" layoutY="71.0" prefHeight="730.0" prefWidth="1092.0" style="-fx-background-color: #ecf0f1;" />
+      <JFXButton layoutX="-1.0" layoutY="71.0" onAction="#itemManagementOnAction" prefHeight="70.0" prefWidth="209.0" styleClass="btn" stylesheets="@../assets/style/css.css" text="Item Management" textFill="WHITE" wrapText="true">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+         <graphic>
+            <ImageView fitHeight="47.0" fitWidth="47.0" pickOnBounds="true">
+               <image>
+                  <Image url="@../assets/images/itemlogo.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </JFXButton>
+      <Label fx:id="lblDate" layoutX="832.0" layoutY="21.0" text="2020 - 10 -01" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblTime" layoutX="1064.0" layoutY="21.0" text="20:04:36" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Label>
+      <Label layoutX="754.0" layoutY="18.0" text="Date :" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="25.0" />
+         </font>
+      </Label>
+      <Label layoutX="971.0" layoutY="18.0" text="Time : " textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="25.0" />
+         </font>
+      </Label>
+      <JFXButton layoutX="1204.0" layoutY="21.0" onAction="#btnLogOutOnAction" styleClass="btnLogOut" stylesheets="@../assets/style/css.css" text="Log Out" />
+      <JFXButton layoutX="-1.0" layoutY="213.0" onAction="#btnItemMovementReportOnAction" prefHeight="70.0" prefWidth="209.0" styleClass="btn" stylesheets="@../assets/style/css.css" text="Item Movement Report" textFill="WHITE" wrapText="true">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+         <graphic>
+            <ImageView fitHeight="47.0" fitWidth="47.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../assets/images/itemMovementIcon.png" />
+               </image></ImageView>
+         </graphic>
+      </JFXButton>
+      <JFXButton layoutX="-1.0" layoutY="284.0" onAction="#btnUserManagementOnAction" prefHeight="70.0" prefWidth="209.0" styleClass="btn" stylesheets="@../assets/style/css.css" text="User Management" textFill="WHITE" wrapText="true">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+         <graphic>
+            <ImageView fitHeight="47.0" fitWidth="47.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../assets/images/userIcon.png" />
+               </image></ImageView>
+         </graphic>
+      </JFXButton>
+      <JFXButton layoutX="-1.0" layoutY="142.0" onAction="#btnIncomeReportOnAction" prefHeight="70.0" prefWidth="209.0" styleClass="btn" stylesheets="@../assets/style/css.css" text="Inome Reports Orders" textFill="WHITE" wrapText="true">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+         <graphic>
+            <ImageView fitHeight="47.0" fitWidth="47.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../assets/images/reportIcon.png" />
+               </image></ImageView>
+         </graphic>
+      </JFXButton>
+      <Label layoutX="8.0" layoutY="719.0" prefHeight="70.0" prefWidth="189.0" text=" Developed By Wishal Nipun Siriwardana." textAlignment="CENTER" textFill="#ecf0f1" wrapText="true">
+         <font>
+            <Font name="System Bold" size="11.0" />
+         </font>
+      </Label>
+      <ImageView fitHeight="70.0" fitWidth="278.0" layoutY="1.0" pickOnBounds="true">
+         <image>
+            <Image url="@../assets/images/logo.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="577.0" layoutY="18.0" prefHeight="38.0" prefWidth="152.0" text="Administrator" textFill="WHITE">
+         <font>
+            <Font name="System Italic" size="25.0" />
+         </font>
+      </Label>
+      <Separator layoutX="732.0" layoutY="11.0" opacity="0.22" orientation="VERTICAL" prefHeight="51.0" prefWidth="11.0" />
+   </children>
+</AnchorPane>
