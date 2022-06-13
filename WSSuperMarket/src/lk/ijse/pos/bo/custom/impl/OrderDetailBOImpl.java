@@ -2,9 +2,7 @@ package lk.ijse.pos.bo.custom.impl;
 
 import lk.ijse.pos.dao.DAOFactory;
 
-import lk.ijse.pos.dao.custom.CustomerDAO;
-import lk.ijse.pos.dao.custom.OrderDAO;
-import lk.ijse.pos.dao.custom.QueryDAO;
+import lk.ijse.pos.dao.custom.*;
 
 import lk.ijse.pos.bo.custom.OrderDetailBO;
 import lk.ijse.pos.dao.custom.impl.ItemDAOImpl;
@@ -26,8 +24,8 @@ public class OrderDetailBOImpl implements OrderDetailBO {
     private final CustomerDAO customerDAO = (CustomerDAO) DAOFactory.getDaoFactory().getDAO(DAOFactory.DAOTypes.CUSTOMER);
     private final OrderDAO orderDAO = (OrderDAO) DAOFactory.getDaoFactory().getDAO(DAOFactory.DAOTypes.ORDER);
     private final QueryDAO queryDAO = (QueryDAO) DAOFactory.getDaoFactory().getDAO(DAOFactory.DAOTypes.QUERYDAO);
-    private final ItemDAOImpl itemDAO = new ItemDAOImpl();
-    private final OrderDetailDAOImpl orderDetailDAO = new OrderDetailDAOImpl();
+    private final ItemDAO itemDAO = (ItemDAO) DAOFactory.getDaoFactory().getDAO(DAOFactory.DAOTypes.ITEM);
+    private final OrderDetailDAO orderDetailDAO = (OrderDetailDAO) DAOFactory.getDaoFactory().getDAO(DAOFactory.DAOTypes.ORDERDETAILS);
 
     @Override
     public boolean deleteOrder(String code) throws SQLException, ClassNotFoundException {
