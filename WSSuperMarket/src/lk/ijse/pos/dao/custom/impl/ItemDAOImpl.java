@@ -66,5 +66,9 @@ public class ItemDAOImpl implements ItemDAO {
         );
     }
 
+    @Override
+    public boolean updateItemQtyUsingItemCode(Item dto) throws SQLException, ClassNotFoundException {
+        return CrudUtil.executeUpdate("UPDATE Item SET QtyOnHand=? WHERE ItemCode=?", dto.getQtyOnHand(), dto.getCode());
+    }
 
 }

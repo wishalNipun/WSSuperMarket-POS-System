@@ -10,6 +10,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 public interface OrderDetailBO extends SuperBO {
+    boolean deleteOrder(String code)throws SQLException,ClassNotFoundException;
+
     ArrayList<CustomerDTO> getAllCustomers() throws SQLException, ClassNotFoundException;
 
     CustomerDTO searchCustomerDetail(String id) throws SQLException, ClassNotFoundException;

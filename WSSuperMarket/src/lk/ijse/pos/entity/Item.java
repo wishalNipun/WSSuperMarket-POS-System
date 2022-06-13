@@ -10,6 +10,11 @@ public class Item {
     public Item() {
     }
 
+    public Item(String code, int qtyOnHand) {
+        this.code = code;
+        this.qtyOnHand = qtyOnHand;
+    }
+
     public Item(String code, String description, String packSize, double unitPrice, int qtyOnHand) {
         this.code = code;
         this.description = description;

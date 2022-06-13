@@ -1,14 +1,13 @@
 package lk.ijse.pos.controller;
 
+import javafx.beans.property.ReadOnlyObjectWrapper;
+import javafx.scene.control.*;
 import lk.ijse.pos.bo.BOFactory;
 import lk.ijse.pos.bo.custom.OrderDetailBO;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextField;
 import javafx.event.ActionEvent;
-import javafx.scene.control.Alert;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import lk.ijse.pos.dto.CustomDTO;
 import lk.ijse.pos.dto.CustomerDTO;
@@ -18,6 +17,7 @@ import lk.ijse.pos.view.tm.OrderTM;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Optional;
 
 public class OrderDetailManagementFormController {
     public JFXComboBox cmbCustomerId;
@@ -55,7 +55,37 @@ public class OrderDetailManagementFormController {
         colUnitPrice.setCellValueFactory(new PropertyValueFactory<>("unitPrice"));
         colDiscount.setCellValueFactory(new PropertyValueFactory<>("discount"));
         colTotal.setCellValueFactory(new PropertyValueFactory<>("total"));
+        TableColumn<OrderTM, Button> lastCol = (TableColumn<OrderTM, Button>) tblOrders.getColumns().get(4);
+        lastCol.setCellValueFactory(param -> {
+            Button btnDelete = new Button("Delete");
 
+            btnDelete.setOnAction(event -> {
+
+                Alert alert = new Alert(Alert.AlertType.WARNING, "Do you Want Delete", ButtonType.YES,ButtonType.NO);
+                Optional<ButtonType> buttonType =alert.showAndWait();
+                if (buttonType.get().equals(ButtonType.YES)){
+                    try {
+                        boolean isDeleted = orderDetailBO.deleteOrder(param.getValue().getOrderId());
+                        if (isDeleted){
+                            new Alert(Alert.AlertType.INFORMATION,"Order has been deleted Successfully").show();
+                            tblOrders.getItems().clear();
+                            loadCustomerOrders((String) cmbCustomerId.getValue());
+                            tblOrderDetails.getItems().clear();
+                        }else {
+                            new Alert(Alert.AlertType.INFORMATION,"Order has been not deleted Successfully").show();
+                        }
+                    } catch (SQLException throwables) {
+                        throwables.printStackTrace();
+                    } catch (ClassNotFoundException e) {
+                        e.printStackTrace();
+                    }
+                }
+
+            });
+
+
+            return new ReadOnlyObjectWrapper<>(btnDelete);
+        });
         btnSearch.setDisable(true);
         txtTitle.setFocusTraversable(false);
         txtTitle.setEditable(false);
@@ -89,18 +119,23 @@ public class OrderDetailManagementFormController {
         });
         
         tblOrders.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
-            SelectedOrderDetails(newValue.getOrderId());
+            if (newValue!=null){
+                SelectedOrderDetails(newValue.getOrderId());
+            }
         });
     }
 
     private void SelectedOrderDetails(String orderId) {
-        tblOrderDetails.getItems().clear();
         try {
-            ArrayList<CustomDTO> customOrders = orderDetailBO.SearchOrderDetailsUsingOrderId(orderId);
-            for (CustomDTO c:customOrders
-                 ) {
-                tblOrderDetails.getItems().add(new OrderDetailTM(c.getCode(),c.getDescription(),c.getPackSize(),c.getQty(),c.getUnitPrice(),c.getDiscount(),c.getPrice()));
+            tblOrderDetails.setDisable(false);
+            tblOrderDetails.getItems().clear();
+            if (orderId!=null){
+                ArrayList<CustomDTO> customOrders = orderDetailBO.SearchOrderDetailsUsingOrderId(orderId);
+                for (CustomDTO c:customOrders
+                ) {
+                    tblOrderDetails.getItems().add(new OrderDetailTM(c.getCode(),c.getDescription(),c.getPackSize(),c.getQty(),c.getUnitPrice(),c.getDiscount(),c.getPrice()));
 
+                }
             }
 
 
@@ -128,12 +163,14 @@ public class OrderDetailManagementFormController {
     public void loadCustomerOrders(String id){
 
         try {
-            ArrayList<OrderDTO> allOrders = orderDetailBO.SearchCustomerOrders(id);
+            if (id !=null){
+                ArrayList<OrderDTO> allOrders = orderDetailBO.SearchCustomerOrders(id);
 
-            for (OrderDTO order:allOrders
-                 ) {
+                for (OrderDTO order:allOrders
+                ) {
 
-                tblOrders.getItems().add(new OrderTM(order.getOrderId(),order.getOrderDate(),order.getOrderTime(),order.getCost()));
+                    tblOrders.getItems().add(new OrderTM(order.getOrderId(),order.getOrderDate(),order.getOrderTime(),order.getCost()));
+                }
             }
 
         } catch (SQLException throwables) {
@@ -146,6 +183,7 @@ public class OrderDetailManagementFormController {
     }
     public void btnSearchOnAction(ActionEvent actionEvent) {
         tblOrders.getItems().clear();
+        tblOrderDetails.getItems().clear();
         loadCustomerOrders((String) cmbCustomerId.getValue());
     }
 }
